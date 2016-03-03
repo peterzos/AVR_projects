@@ -50,7 +50,8 @@
 #include "onewire.h"
 #include "ds18x20.h"
 
-#define BAUD 19200
+//#define BAUD 19200
+#define BAUD 9600
 // 2400 for 1MHz and 2MHz internal RC
 // #define BAUD 2400
 
@@ -102,10 +103,10 @@ static void uart_put_temp(int16_t decicelsius)
 	char s[10];
 
 	uart_put_int( decicelsius );
-	uart_puts_P(" deci캜, ");
+	uart_puts_P(" deci째C, ");
 	DS18X20_format_from_decicelsius( decicelsius, s, 10 );
 	uart_puts( s );
-	uart_puts_P(" 캜");
+	uart_puts_P(" 째C");
 }
 
 
@@ -116,10 +117,10 @@ static void uart_put_temp_maxres(int32_t tval)
 	char s[10];
 
 	uart_put_longint( tval );
-	uart_puts_P(" 캜e-4, ");
+	uart_puts_P(" 째Ce-4, ");
 	DS18X20_format_from_maxres( tval, s, 10 );
 	uart_puts( s );
-	uart_puts_P(" 캜");
+	uart_puts_P(" 째C");
 }
 
 #endif /* DS18X20_MAX_RESOLUTION */

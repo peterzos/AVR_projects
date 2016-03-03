@@ -4,7 +4,7 @@
 
 ## General Flags
 PROJECT = ds1820_demo
-MCU = atmega324p
+MCU = atmega8
 TARGET = ds1820_demo.elf
 CC = avr-gcc
 
@@ -15,7 +15,7 @@ COMMON = -mmcu=$(MCU)
 
 ## Compile options common for all C compilation units.
 CFLAGS = $(COMMON)
-CFLAGS += -Wall -gdwarf-2 -std=gnu99 -Wextra -pedantic -ffunction-sections -fdata-sections   -fno-inline-small-functions  -DF_CPU=16000000UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
+CFLAGS += -Wall -gdwarf-2 -std=gnu99 -Wextra -pedantic -ffunction-sections -fdata-sections   -fno-inline-small-functions  -DF_CPU=7372800UL -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 CFLAGS += -MD -MP -MT $(*F).o -MF dep/$(@F).d 
 
 ## Assembly specific flags
@@ -83,6 +83,9 @@ $(TARGET): $(OBJECTS)
 size: ${TARGET}
 	@echo
 	@avr-size -C --mcu=${MCU} ${TARGET}
+	
+program: $(PROJECT).hex
+	avrdude -p m8 -c usbasp -e -U flash:w:$(PROJECT).hex
 
 ## Clean target
 .PHONY: clean
