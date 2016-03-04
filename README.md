@@ -17,6 +17,7 @@ http://homepage.hispeed.ch/peterfleury/avr-software.html
 - Sending commands through serial port  (RS232 or RS485)  
 `stty -F /dev/ttyUSB0 9600`  
 `echo '7f00010200aaaa0000' | xxd -r -p > /dev/ttyUSB0`  
+- TODO - replace the uart library,...
 
 
 
